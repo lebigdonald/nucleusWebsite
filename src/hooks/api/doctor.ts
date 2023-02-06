@@ -1,5 +1,5 @@
 import {useQuery} from "react-query";
-import {findDoctorByDoctorId, findDoctorByUserId} from "../../api/doctor";
+import {findDoctorByDoctorId, findDoctorByUserId, findDoctors} from "../../api/doctor";
 import {findUser} from "../../api/user";
 import {IDoctor, IDoctorWithDetails} from "../../types/doctor";
 
@@ -24,5 +24,11 @@ export const useFindDoctorWithDetails = (doctor: IDoctor) => {
                 ...user
             } as IDoctorWithDetails
         }
+    })
+}
+
+export const useFindDoctors = () => {
+    return useQuery([], findDoctors, {
+        enabled: !! []
     })
 }

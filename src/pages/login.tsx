@@ -6,6 +6,10 @@ import {AUTH_TOKEN_KEY} from "../contexts/auth-reducer";
 import Cookies from 'js-cookie'
 import {useRouter} from "next/router";
 import {useToast} from "@chakra-ui/react";
+import {userRoles} from "../constants";
+import DoctorHome from "../components/DoctorHome";
+import NurseHome from "../components/NurseHome";
+import AdminHome from "../components/AdminHome";
 
 const Login: NextPage = ({}) => {
     const {mutate: login, data, error, isLoading} = useSignIn()

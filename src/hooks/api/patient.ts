@@ -1,8 +1,8 @@
 import {useQuery} from "react-query";
-import {findPatientByPatientId, findPatientByUserId, findPatients} from "../../api/patient";
+import {findPatientByPatientId, findPatientByUserId, findPatientsByHospitalId} from "../../api/patient";
 import {IPatient, IPatientWithDetails} from "../../types/patient";
 import {findUser} from "../../api/user";
-import {findDoctors} from "../../api/doctor";
+import {findDoctorsByHospitalId} from "../../api/doctor";
 
 export const useFindPatientByUserId = (patientUserId: string) => {
     return useQuery(["patients", patientUserId], findPatientByUserId, {
@@ -28,8 +28,8 @@ export const useFindPatientWithDetails = (patient: IPatient) => {
     })
 }
 
-export const useFindPatients = () => {
-    return useQuery([], findPatients, {
-        enabled: !! []
+export const  useFindPatientByHospitalId = (hospitalId: string) => {
+    return useQuery(["hospitals", hospitalId], findPatientsByHospitalId, {
+        enabled: !!hospitalId
     })
 }

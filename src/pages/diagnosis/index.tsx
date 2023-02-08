@@ -1,17 +1,18 @@
 import {NextPage} from "next";
 import React from "react";
-import {useFindNursesByHospitalId} from "../../hooks/api/nurse";
 import DataTable from "react-data-table-component";
 import {useStateValue} from "../../contexts/AuthProvider";
 import {useFindUser} from "../../hooks/api/user";
+import {useFindDiagnosisByHospitalId} from "../../hooks/api/diagnosis";
 
-const Nurses: NextPage = () => {
+const Doctors: NextPage = ({}) => {
     const [{authUser}] = useStateValue();
     const {data: user} = useFindUser(authUser?.userId)
-    const {data: nurses} = useFindNursesByHospitalId(user?.hospitalId)
-    let nurseNumber = 0;
-    if (nurses) {
-        nurseNumber = nurses.length
+    const {data: diagnosis} = useFindDiagnosisByHospitalId(user?.hospitalId)
+
+    let diagnosisNumber = 0;
+    if (diagnosis) {
+        diagnosisNumber = diagnosis.length
     }
 
     const columns = [
@@ -29,7 +30,12 @@ const Nurses: NextPage = () => {
             name: 'Phone',
             selector: row => row.phoneNumber,
             sortable: true,
-        }
+        },
+        {
+            name: 'Spécialité',
+            selector: row => row.specialtyId,
+            sortable: true,
+        },
     ];
 
     return (
@@ -37,9 +43,9 @@ const Nurses: NextPage = () => {
             <div className='space-y-8'>
                 <div className='w-full border-x border-t rounded-lg'>
                     <DataTable
-                        title={nurseNumber + " Infirmier(e)s"}
+                        title={diagnosisNumber + " Diagnosis"}
                         columns={columns}
-                        data={nurses}
+                        data={diagnosis}
                         pagination
                         responsive={true}
                         highlightOnHover
@@ -50,4 +56,4 @@ const Nurses: NextPage = () => {
     )
 };
 
-export default Nurses;
+export default Doctors;

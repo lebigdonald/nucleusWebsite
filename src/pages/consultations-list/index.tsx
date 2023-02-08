@@ -1,37 +1,40 @@
 import {NextPage} from "next";
 import React from "react";
-import {useFindNurses} from "../../hooks/api/nurse";
 import DataTable from "react-data-table-component";
-import {useFindMedicalCares, useFindMedicalCaress} from "../../hooks/api/medical-care";
+import {useStateValue} from "../../contexts/AuthProvider";
+import {useFindUser} from "../../hooks/api/user";
+import {useFindConsultationsByHospital} from "../../hooks/api/consultation";
 
 const ConsultationList: NextPage = ({}) => {
-    const {data: consultations} = useFindMedicalCaress()
-    let consultationNumber = 0;
+    const [{authUser}] = useStateValue();
+    const {data: user} = useFindUser(authUser?.userId)
+    const {data: consultations} = useFindConsultationsByHospital(user?.hospitalId)
+    let consultationsNumber = 0;
     if (consultations) {
-        consultationNumber = consultations.length
+        consultationsNumber = consultations.length
     }
 
     const columns = [
         {
             name: 'Name',
-            selector: 'name',
-            sortable: true,
-        },
-        {
-            name: 'Phone',
-            selector: 'phoneNumber',
+            selector: row => row.firstName + ' ' + row.lastName,
             sortable: true,
         },
         {
             name: 'Email',
-            selector: 'email',
+            selector: row => row.email,
+            sortable: true,
+        },
+        {
+            name: 'Phone',
+            selector: row => row.phoneNumber,
             sortable: true,
         },
         {
             name: 'DOB',
-            selector: 'dob',
+            selector: row => row.dob,
             sortable: false,
-        },
+        }
     ];
 
     return (
@@ -39,12 +42,11 @@ const ConsultationList: NextPage = ({}) => {
             <div className='space-y-8'>
                 <div className='w-full border-x border-t rounded-lg'>
                     <DataTable
-                        title={consultationNumber + " Consultations"}
+                        title={consultationsNumber + " Prises en Charge"}
                         columns={columns}
                         data={consultations}
                         pagination
                         responsive={true}
-
                         highlightOnHover
                     />
                 </div>

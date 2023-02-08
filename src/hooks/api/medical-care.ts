@@ -2,7 +2,7 @@ import {useMutation, useQuery} from "react-query";
 import {IMedicalCareCreate} from "../../types/medical-care";
 import {
     createMedicalCare,
-    findMedicalCare, findMedicalCares, findMedicalCaress,
+    findMedicalCare, findMedicalCares,
     findNurseMedicalCares,
     findPatientMedicalCares,
 } from "../../api/medical-care";
@@ -33,10 +33,4 @@ export const useFindMedicalCare = (id: string) => {
 
 export const useCreateMedicalCare = () => {
     return useMutation((medicalCare: IMedicalCareCreate) => createMedicalCare(medicalCare))
-}
-
-export const useFindMedicalCaress = () => {
-    return useQuery([], findMedicalCaress, {
-        enabled: !! []
-    })
 }

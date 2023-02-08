@@ -4,11 +4,10 @@ import {userRoles} from "../constants";
 import DoctorHome from "../components/DoctorHome";
 import NurseHome from "../components/NurseHome";
 import AdminHome from "../components/AdminHome";
-import React from "react";
 
 
 const Index: NextPage = () => {
-    // const [{authUser}] = useStateValue();
+    const [{authUser}] = useStateValue();
 
     return (
         <section className='grid gap-6 py-8 lg:grid-cols-2 xl:grid-cols-3'>

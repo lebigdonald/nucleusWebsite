@@ -1,5 +1,5 @@
 import {useQuery} from "react-query";
-import {findNurseByNurseId, findNurseByUserId, findNurses} from "../../api/nurse";
+import {findNurseByNurseId, findNurseByUserId, findNursesByHospitalId} from "../../api/nurse";
 
 export const useFindNurseByUserId = (nurseUserId: string) => {
     return useQuery(["nurses", nurseUserId], findNurseByUserId, {
@@ -13,8 +13,8 @@ export const useFindNurseByNurseId = (nurseId: string) => {
     })
 }
 
-export const useFindNurses = () => {
-    return useQuery([], findNurses, {
-        enabled: !! []
+export const  useFindNursesByHospitalId = (hospitalId: string) => {
+    return useQuery(["nurses", hospitalId], findNursesByHospitalId, {
+        enabled: !!hospitalId
     })
 }

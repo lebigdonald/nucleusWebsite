@@ -1,10 +1,15 @@
 import {NextPage} from "next";
 import React from "react";
 import DataTable from "react-data-table-component";
-import {useFindPatients} from "../../hooks/api/patient";
+import {useFindPatientByHospitalId} from "../../hooks/api/patient";
+import {useStateValue} from "../../contexts/AuthProvider";
+import {useFindUser} from "../../hooks/api/user";
 
 const PatientsList: NextPage = ({}) => {
-    const {data: patients} = useFindPatients();
+    const [{authUser}] = useStateValue();
+    const {data: user} = useFindUser(authUser?.userId)
+    const {data: patients} = useFindPatientByHospitalId(user?.hospitalId)
+
     let patientNumber = 0;
     if (patients) {
         patientNumber = patients.length
@@ -18,27 +23,27 @@ const PatientsList: NextPage = ({}) => {
         },
         {
             name: 'Phone',
-            selector: 'phoneNumber',
+            selector: row => row.phoneNumber,
             sortable: true,
         },
         {
             name: 'Email',
-            selector: 'email',
+            selector: row => row.email,
             sortable: true,
         },
         {
             name: 'Sexe',
-            selector: 'gender',
+            selector: row => row.gender,
             sortable: false,
         },
         {
             name: 'Groupe Sanguin',
-            selector: 'bloodGroup',
+            selector: row => row.bloodGroup,
             sortable: false,
         },
         {
             name: 'Rhesus',
-            selector: 'rhesusFactor',
+            selector: row => row.rhesusFactor,
             sortable: false,
         }
     ];

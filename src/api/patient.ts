@@ -1,7 +1,7 @@
 import axios from "./axios";
 import {apiRoutes} from "../constants";
-import {IDiagnosis, IDiagnosisCreate} from "../types/diagnosis";
 import {IPatient} from "../types/patient";
+import {IDoctor} from "../types/doctor";
 
 export const findPatientByUserId = async ({queryKey}) => {
     const {data} = await axios.get<IPatient>(`${apiRoutes.PATIENTS}/user/${queryKey[1]}`);
@@ -13,145 +13,7 @@ export const findPatientByPatientId = async ({queryKey}) => {
     return data;
 }
 
-export const findPatients = async () => {
-    // const {data} = await axios.get<IPatient[]>(`${apiRoutes.PATIENTS}`);
-    // return data;
-
-    return [
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        },
-        {
-            firstName: "Uta",
-            lastName: "STUART",
-            email: "doctor@doc.com",
-            phoneNumber: "+237685236985",
-            gender: "M",
-            bloodGroup: "O+",
-            rhesusFactor: ""
-        }
-    ]
+export const findPatientsByHospitalId = async ({queryKey}) => {
+    const {data} = await axios.get<IPatient[]>(`${apiRoutes.PATIENTS}/hospitals/${queryKey[1]}`);
+    return data;
 }

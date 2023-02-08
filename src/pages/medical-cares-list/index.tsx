@@ -1,37 +1,42 @@
 import {NextPage} from "next";
 import React from "react";
-import {useFindNurses} from "../../hooks/api/nurse";
 import DataTable from "react-data-table-component";
-import {useFindMedicalCares, useFindMedicalCaress} from "../../hooks/api/medical-care";
+import {useStateValue} from "../../contexts/AuthProvider";
+import {useFindUser} from "../../hooks/api/user";
+import {useFindMedicalCares} from "../../hooks/api/medical-care";
 
 const MedicalCaresList: NextPage = ({}) => {
-    const {data: medicalCares} = useFindMedicalCaress()
+    const [{authUser}] = useStateValue();
+    const {data: user} = useFindUser(authUser?.userId)
+    const {data: medicalCares} = useFindMedicalCares(user?.hospitalId, null, null)
     let medicalCareNumber = 0;
+    let medicals = [];
     if (medicalCares) {
-        medicalCareNumber = medicalCares.length
+        medicalCareNumber = medicalCares.itemsCount
+        medicals = medicalCares.medicalCares
     }
 
     const columns = [
         {
             name: 'Name',
-            selector: 'name',
-            sortable: true,
-        },
-        {
-            name: 'Phone',
-            selector: 'phoneNumber',
+            selector: row => row.firstName + ' ' + row.lastName,
             sortable: true,
         },
         {
             name: 'Email',
-            selector: 'email',
+            selector: row => row.email,
+            sortable: true,
+        },
+        {
+            name: 'Phone',
+            selector: row => row.phoneNumber,
             sortable: true,
         },
         {
             name: 'DOB',
-            selector: 'dob',
+            selector: row => row.dob,
             sortable: false,
-        },
+        }
     ];
 
     return (
@@ -41,10 +46,9 @@ const MedicalCaresList: NextPage = ({}) => {
                     <DataTable
                         title={medicalCareNumber + " Prises en Charge"}
                         columns={columns}
-                        data={medicalCares}
+                        data={medicals}
                         pagination
                         responsive={true}
-
                         highlightOnHover
                     />
                 </div>

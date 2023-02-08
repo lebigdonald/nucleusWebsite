@@ -48,21 +48,17 @@ const Consultations: NextPage = () => {
                 <h1 className='text-2xl font-medium'>Consultations</h1>
                 {/* <div className='relative flex-1 max-w-xs'>
         
-                    <select onChange={ search} className="block appearance-none w-full bg-white border border-gray-400
-                    hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <select onChange={ search} className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                         <option>Select Hospital</option>
                         <option>Option 2</option>
                         <option>Option 3</option>
                     </select>
                   
                 </div> */}
-                <input className='transition-all bg-gray-100 block hover:ring-2 hover:ring-gray-500 py-[0.4rem] w-full
-                pl-10 border-none sm:text-sm rounded-md focus:ring-2 focus:ring-red-500'
+                <input className='transition-all bg-gray-100 block hover:ring-2 hover:ring-gray-500 py-[0.4rem] w-full pl-10 border-none sm:text-sm rounded-md focus:ring-2 focus:ring-red-500'
                         type="text" placeholder='Rechercher une consultation...'/>
-                <button type="button" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs
-                leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700
-                focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition
-                duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button"className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     filter
                 </button>
                 </div>

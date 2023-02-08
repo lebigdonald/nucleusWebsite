@@ -1,26 +1,24 @@
 import React from "react";
 import Link from "next/link";
 import {FiActivity, FiArchive, FiTablet, FiUsers} from "react-icons/fi";
-import {useFindDoctors} from "../hooks/api/doctor";
-import {useFindNurses} from "../hooks/api/nurse";
 
 interface Props {
 }
 
 const AdminHome: React.FC<Props> = ({}) => {
     const groups = [
-        {number: 13, title: 'Medécins', url: '/doctors', Icon: FiUsers},
-        {number: 26, title: 'Infirmiers', url: '/nurses', Icon: FiUsers},
-        {number: 15 , title: 'Prise en Charge', url: '/medical-cares-list', Icon: FiActivity},
-        {number: 10 , title: 'Consultations', url: '/consultations-list', Icon: FiTablet},
-        {number: 15 , title: 'Patients', url: '/patients-list', Icon: FiUsers},
-        {number: 10 , title: 'Diagnotiques', url: '/diagnostics', Icon: FiActivity},
-        {number: 15 , title: 'Annonces', url: '/advertisements', Icon: FiArchive},
+        {title: 'Medécins', url: '/doctors', Icon: FiUsers},
+        {title: 'Infirmiers', url: '/nurses', Icon: FiUsers},
+        {title: 'Prise en Charge', url: '/medical-cares-list', Icon: FiActivity},
+        {title: 'Consultations', url: '/consultations-list', Icon: FiTablet},
+        {title: 'Patients', url: '/patients-list', Icon: FiUsers},
+        {title: 'Diagnotiques', url: '/diagnostics', Icon: FiActivity},
+        {title: 'Annonces', url: '/advertisements', Icon: FiArchive},
     ];
 
     return (
         <>
-            {groups.map(({number, title, url, Icon}, index) => (
+            {groups.map(({title, url, Icon}, index) => (
                 <Link key={index} href={url}>
                     <a className='text-white w-full relative text-white overflow-hidden rounded-3xl flex shadow-lg'>
                         <div
